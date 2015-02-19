@@ -10,7 +10,6 @@
 		19CA24911A96745500A3A50E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA24901A96745500A3A50E /* main.m */; };
 		19CA24941A96745500A3A50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA24931A96745500A3A50E /* AppDelegate.m */; };
 		19CA24971A96745500A3A50E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA24961A96745500A3A50E /* ViewController.m */; };
-		19CA249A1A96745500A3A50E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19CA24981A96745500A3A50E /* Main.storyboard */; };
 		19CA249C1A96745500A3A50E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19CA249B1A96745500A3A50E /* Images.xcassets */; };
 		19CA249F1A96745500A3A50E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CA249D1A96745500A3A50E /* LaunchScreen.xib */; };
 		19CA24AB1A96745500A3A50E /* BlocBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA24AA1A96745500A3A50E /* BlocBrowserTests.m */; };
@@ -34,7 +33,6 @@
 		19CA24931A96745500A3A50E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		19CA24951A96745500A3A50E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		19CA24961A96745500A3A50E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		19CA24991A96745500A3A50E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19CA249B1A96745500A3A50E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		19CA249E1A96745500A3A50E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		19CA24A41A96745500A3A50E /* BlocBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +83,6 @@
 				19CA24931A96745500A3A50E /* AppDelegate.m */,
 				19CA24951A96745500A3A50E /* ViewController.h */,
 				19CA24961A96745500A3A50E /* ViewController.m */,
-				19CA24981A96745500A3A50E /* Main.storyboard */,
 				19CA249B1A96745500A3A50E /* Images.xcassets */,
 				19CA249D1A96745500A3A50E /* LaunchScreen.xib */,
 				19CA248E1A96745500A3A50E /* Supporting Files */,
@@ -199,7 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19CA249A1A96745500A3A50E /* Main.storyboard in Resources */,
 				19CA249F1A96745500A3A50E /* LaunchScreen.xib in Resources */,
 				19CA249C1A96745500A3A50E /* Images.xcassets in Resources */,
 			);
@@ -244,14 +240,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		19CA24981A96745500A3A50E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				19CA24991A96745500A3A50E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		19CA249D1A96745500A3A50E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
