@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+// Replaces the web view with a fresh one, erasing all history. Also updates the URL and toolbar buttons appropriatly
+-(void) resetWebView;
 
 
 @end

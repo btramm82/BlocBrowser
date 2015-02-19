@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 @interface ViewController () <UIWebViewDelegate,UITextFieldDelegate>
+// Replaces the web view with a fresh one, erasing all history. Also updates the URL and toolbar buttons appropriatly
+-(void) resetWebView;
 
 
 
@@ -20,6 +22,7 @@
 @property (nonatomic, strong) UIButton *reloadButton;
 @property (nonatomic, assign) NSUInteger frameCount;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation ViewController
@@ -53,23 +56,27 @@
     [self.reloadButton setEnabled:NO];
     
     [self.backButton setTitle:NSLocalizedString(@"Back", @"Back" comnmand) forState:UIControlStateNormal];
-    [self.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     
     [self.forwardButton setTitle:NSLocalizedString(@"Forward", @"Forward" comnmand) forState:UIControlStateNormal];
-    [self.forwardButton addTarget:self action:@selector(goForward) forControlEvents:UIControlEventTouchUpInside];
     
     [self.stopButton setTitle:NSLocalizedString(@"Stop", @"Stop" comnmand) forState:UIControlStateNormal];
-    [self.stopButton addTarget:self action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
     
     [self.reloadButton setTitle:NSLocalizedString(@"Refresh", @"Reload" comnmand) forState:UIControlStateNormal];
-    [self.reloadButton addTarget:self action:@selector(reload) forControlEvents:UIControlEventTouchUpInside];
     
- 
+    [self addButtonTargets];
+    
+
     for (UIView *viewToAdd in @[self.webview, self.textField, self.backButton, self.forwardButton, self.stopButton, self.reloadButton]) {
         [mainView addSubview:viewToAdd];
     }
     
     self.view = mainView;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Welcome!", @"Welcome title")
+                                                    message:NSLocalizedString(@"You are using Bloc Browser!", @"Welcome comment")
+                                                   delegate:nil
+                                          cancelButtonTitle:NSLocalizedString(@"Let's Do It!!!", @"Welcome button title") otherButtonTitles:nil];
+    [alert show];
 }
 
 
@@ -79,8 +86,8 @@
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
-    
 }
+
 
 
 -(void) viewWillLayoutSubviews {
@@ -188,9 +195,42 @@
     self.backButton.enabled = [self.webview canGoBack];
     self.forwardButton.enabled = [self.webview canGoForward];
     self.stopButton.enabled = self.frameCount > 0;
-    self.reloadButton.enabled = !self.frameCount == 0;
+    self.reloadButton.enabled = self.webview.request.URL && self.frameCount == 0;
     
 }
+
+-(void) addButtonTargets {
+    for (UIButton *button in @[self.backButton, self.forwardButton, self.stopButton, self.reloadButton]) {
+        [button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    [self.backButton addTarget:self.webview action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [self.forwardButton addTarget:self action:@selector(goForward) forControlEvents:UIControlEventTouchUpInside];
+    [self.stopButton addTarget:self action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
+    [self.reloadButton addTarget:self action:@selector(reload) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+-(void) resetWebView {
+    [self.webview removeFromSuperview];
+    
+    UIWebView *newWebView = [[UIWebView alloc] init];
+    newWebView.delegate = self;
+    [self.view addSubview:newWebView];
+    
+    self.webview = newWebView;
+    
+    [self addButtonTargets];
+    
+    self.textField.text = nil;
+    [self updateButtonsAndTitle];
+     
+     }
+
+
+
+
+
 
 @end
 
