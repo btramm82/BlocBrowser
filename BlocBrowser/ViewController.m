@@ -72,6 +72,15 @@
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+
+    // Button Positioning
+    CGFloat viewWidth = CGRectGetWidth((self.view.frame));
+    if ( viewWidth > 320){
+        self.awesomeToolbar.frame = CGRectMake(75, 225, 300, 50);
+    } else {
+        self.awesomeToolbar.frame = CGRectMake(20, 350, 280, 50);
+    }
+    
 }
 
 
@@ -88,14 +97,6 @@
     self.textField.frame = CGRectMake(0, 0, width, itemHeight);
     self.webview.frame = CGRectMake(0, CGRectGetMaxY(self.textField.frame), width, browserHeight);
     
-// Button Positioning
-    CGFloat viewWidth = CGRectGetWidth((self.view.frame));
-    if ( viewWidth > 320){
-        self.awesomeToolbar.frame = CGRectMake(75, 225, 300, 50);
-    } else {
-        self.awesomeToolbar.frame = CGRectMake(20, 350, 280, 50);
-    }
-
     
 }
 
@@ -221,6 +222,20 @@
     
     if (CGRectContainsRect(self.view.bounds, potentialNewFrame)) {
         toolbar.frame = potentialNewFrame;
+    } else {
+        NSLog(@"pan didn't fit");
+    }
+}
+
+-(void) floatingToolbar:(AwesomeFloatingToolbar *)toolbar didTryToPinchWithScale:(CGFloat)scale {
+    CGPoint startingPoint = toolbar.frame.origin;
+    
+    CGRect potentialNewFrame = CGRectMake(startingPoint.x, startingPoint.y, CGRectGetWidth(toolbar.frame)*scale, CGRectGetHeight(toolbar.frame)*scale);
+    
+    if (CGRectContainsRect(self.view.bounds, potentialNewFrame)) {
+        toolbar.frame = potentialNewFrame;
+    } else {
+        NSLog(@"pinch didn't fit");
     }
 }
 
